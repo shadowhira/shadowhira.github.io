@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/OIP.UQL0pLRWhVPYyHQvT7x0_gHaHa?pid=ImgDet&w=202&h=202&c=7&dpr=1.1">
+        <meta charset="utf-8">
+        <title>Notification</title>
+        <script>
+            function wait(){
+                alert(`Click See More button for more`);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const divs = document.querySelectorAll('div');
+
+                for (let i = 1; i < divs.length; i++) {
+                    setInterval(() => {
+                        divs[i].style.color = "white";
+                    }, 1500 * i);
+                }
+
+            });
+
+            setInterval(wait, 100000);
+
+        </script>
+    </head>
+    <body style="background-color: black;">
+        <div></div>
+        <div id="s1">Chúng tôi</div> 
+        <div id="s2">Bộ công an</div> 
+        <div id="s3">Bộ truyền thông</div>  
+        <div id="s4">Các trung tâm viễn thông</div> 
+        <div id="s5">Các sàn thương mại điện tử</div>
+        <div id="s6">...</div>
+        <div is="s7">và người gửi cái này cho bạn</div>
+        <div id="s8">Xin thông báo ...</div>
+        <button id=s9>See more</button>
+    </body>
+</html>
