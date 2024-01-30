@@ -1,0 +1,66 @@
+1. Introduction
+
+2. Git
+- Git là một công cụ dòng lệnh cho phép chúng ta theo dõi các thay đổi mà ta thực hiện với code (sự thay đổi của code).
+- Để làm gì? Để đảm bảo tính toàn vẹn của code của ta, ta muốn tải lại bản thay đổi gần nhất, hoặc 3 ngày trước, hoặc 1 tuần trước, thay vì copy chúng ở mỗi thời điểm, git sẽ giúp ta điều đó.
+- Ngoài ra git còng giúp đồng bộ code giữa những người khác nhau. Khi một project được chia thành nhiều phần, ta có thể xem được thay đổi mới nhất của người khác kể cả ta không phụ trách phần đó. Điều đó đảm bảo tiến độ công việc.
+- Ngoài ra, ta còn có thể tạo 1 bản sao (nhằm thử phát triển 1 tính năng mới chẳng hạn) trên 1 nhánh, thực hiện các thay đổi, nếu ta cảm thấy hài lòng với thay đổi, ta có thể hợp nhất với bản gốc hoặc không mà không làm ảnh hưởng tới bản gốc. Phần này mình chưa rõ lắm về tác dụng của nó.
+- Như đã nói ở trên, Git có lịch sử các thay đổi của code, vì thế ta có thể khôi phục phiên bản cũ của code nếu ta không hài lòng với các thay đổi mới.
+- Và nó đặc biệt hiệu quả khi ta dần tiếp cận với các dự án lớn, nơi mà có nhiều cá nhân tham gia vào.
+
+3. GitHub
+- Và thật tuyệt nếu có một website cho phép ta lưu trữ các dòng code và các thay đổi của nó. Và một website phổ biến cho phép ta làm điều đó là GitHub.
+- Đầu tiên, ta cần tạo một repository (kho) lưu trữ. Bằng cách truy cập github.com/new sau đó tạo một kho với tên, mô tả cùng vài cài đặt khác.
+- Sau đó ta có thể bắt đầu tải code lên kho thông qua các lệnh:
++ git clone: để lấy một kho lưu trữ từ Internet và tải xuống pc
+- Ta có thể lưu trạng thái, tiến trình của code hiện tại, giống như 1 checkpoint, 1 ảnh chụp tất cả code hiện tại, nó được gọi là commit, nhưng ta cần một vài bước để làm thế:
++ Đầu tiên ta cần một lệnh bổ sung: git add: nói với Git rằng: tôi muốn thêm một tệp để theo dõi trong lần lưu kế tiếp (lần mà chúng ta đang chuẩn bị để lưu). Sau đó ta cần cho Git biết những tệp cần được theo dõi: 
+git add hello.html
+
+4. Commits
+- Nhưng vừa rồi mới chỉ xác định tệp nào sẽ được commit, giờ ta cần thực hiện commit:
++ git commit: nói với kho rằng tôi muốn lưu ảnh chụp nhanh về trạng thái hiện tại của kho, theo dõi bất kì thay đổi nào được thực hiện đối với các tệp mà tôi vừa thêm vào thông qua git add:
+git commit -m "message" // message ở đây như 1 chú thích về lần commit đó, vì ta sẽ commit nhiều lần trong 1 project, và ta cần chú thích cho từng lần
+- Tới đây, nó vẫn chưa được đẩy lên GitHub, vì nó vẫn đang ở PC của ta, cần thêm một bước nữa:
++ git status: cái này giống như .schema trong SQL, nó cho ta biết sự khác nhau giữa trạng thái code ở local (PC) so với trạng thái code trên GitHub, như là ở local đang đi trước 1 commit hoặc ở GitHub thư mục đang rỗng
++ git push: ta bắt đầu đẩy các tệp đã được commit vừa rồi từ local lên GitHub
+- Sau khi push lên GitHub, ta truy cập đường dẫn tới kho (repository) và reload lại trang, ta sẽ thấy một số thay đổi:
++ Số commit được tạo
++ Số nhánh (branch)
++ ...
+- Sau đó, do đã đặt commit vào hello.html, khi ta thay đổi code ở local, rồi chạy lệnh:
+git status, nó sẽ báo rằng đã có thay đổi ở file hello.html, ta có thể:
++ git restore hello.html: khôi phục về phiên bản gần nhất ta commit
++ git add -> git commit để tiếp tục theo dõi phiên bản ta vừa thay đổi, vì nếu không git commit lại, nó sẽ tiếp tục theo dõi phiên bản gần nhất ta commit.
+Ta có thể gộp 2 lệnh trên với 1 chút thay đổi:
+git commit -am "message": a for all, là chọn tất cả các tệp có sự thay đổi và commit chúng. Sau đó ta có thể git push.
+- Sau lệnh git push, ta có thể thấy trong kho đã có 2 commit, ta có thể bấm vào đó để xem lịch sử commit.
+- Ta cũng có thể làm ngược lại: Thay đổi file hello.html trên GitHub, thêm thay đổi đó vào một commit khác. Sau đó, ở local, khi ta git status, ta sẽ thấy thông báo về sự thay đổi này.
+Khi đó, nếu muốn cập nhật thay đổi từ GitHub về local, ngược lại với git push, ta có thể:
++ git pull: nó sẽ tải các thay đổi trong commit gần nhất từ GitHub về local
+Sau đó, code ở local tự động cập nhật và trên kho đã có 3 commit, ta có thể bấm vào để xem lịch sử các commit.
+
+5. Merge Conflicts (và một vài git command khác)
+- Do đây là môi trường mà các dev có thể cùng sửa đổi code trong 1 dự án, điều gì xảy ra nếu cùng 1 loại dữ liệu bị thay đổi?
+Ví dụ: ở local ta vừa thay đổi tag <div> thành <h1> và commit nó nhưng chưa đẩy lên GitHub
+ở GitHub vừa có 1 thanh niên khác thay đổi <div> thành <h2> và commit nó trên GitHub
+Lúc này khi ta git pull, Merge Conflicts sẽ xảy ra, sau lệnh này, ở local sẽ hiển thị cho ta sự thay đổi ở commit của ta và commit của thanh niên kia và nó cho ta lựa chọn: accept current change (của mình), accept incoming change (của thanh niên kia), accept both, compare changes
+Sau đó, ta có thể lựa chọn sao cho hợp lý (có thể là sau khi thảo luận với thanh niên kia) và push lại lên GitHub
+- Ngoài ra, còn một vài lệnh git hữu ích khác:
++ git log: hữu ích khi ta cần theo dõi tất cả các thay đổi mà ta thực hiện với code của mình, lưu ý là nó có thể chạy rất lâu với các dự án nhiều commit.
++ git reset: đưa về trạng thái cũ hơn (như là trên kho lưu trữ):
+git reset --hard <commit - dạng hash>
+git reset --origins/main
++ ... <không đề cập>
+
+6. Branching
+- Khi các dự án lớn dần lên, phức tạp dần lên, việc chỉ theo dõi toàn bộ các thay đổi dần trở nên không hiệu quả. Đặc biệt khi nhiều người cùng cộng tác. Code ở các nhánh quan trọng cần được đảm bảo và ít thay đổi đồng thời để tránh xung đột.
+- Việc phân nhánh (branch) trong Git là một trong những tính năng quan trọng nhất của Git. Phân nhánh cho phép bạn tách ra một phiên bản của repository hiện tại và phát triển nó độc lập với phiên bản gốc.
+- Tách chúng thành nhiều phiên bản tức là các dev được độc lập phát triển code đó, được thử nghiệm các tính năng mới, fix bug mà không làm ảnh hưởng tới code của nhánh chính.
+- Thậm chí sau khi tự phát triển, ta có thể merge các nhánh lại với nhau, vì thế, việc phân nhánh hạn chế được xung đột, không chỉ trong code mà cả giữa các dev. Và từ đó, dễ dàng quản lí và theo dõi hơn.
+- Lệnh:
++ git branch: cho biết ta đang ở branch nào
++ git checkout <branch_name>: kiểm tra một nhánh (tức là chuyển tới nhánh đó), nếu nhánh đó chưa tồn tại, tạo nhánh mới và switch tới nhánh đó bằng cú pháp khác: git checkout -b <branch_name>
++ git merge <branch_name>: git sẽ merge branch hiện tại với branch_name. Tất nhiên nó vẫn hiển thị các Merge Conflict (nếu có)
+- Tiếp theo Brain giới thiệu GitHub của Bootstrap, và ta có thể Fork (lưu Bootstrap dưới dạng repostory của mình) và thực hiện các thay đổi như thêm tính năng hoặc fix bug. Sau khi làm thế, ta có thể pull request (yêu cầu Bootstrap xem xét và tích hợp code của ta vào code của họ). Đó là cái hay của một open source, cộng đồng có thể đóng góp các tính năng, cải thiện các lỗi và hợp nhất các đóng góp để tạo nên một tài nguyên chung hữu ích.
+- Cuối cùng Brain giới thiệu 1 tính năng khá thú vị, ta có thể có 1 website của riêng mình có dạng shadowhira.github.io
