@@ -16,15 +16,97 @@
             }
 
             .image-container img {
-            width: 100%;
+            width: 50%;
             height: auto;
             object-fit: cover;
             }
+
+            #show-info {
+                background-color: #000;
+                color: #bb3939;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+              }
+              
+              #info-popup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+              }
+              
+              #info-popup .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 400px;
+                height: 300px;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+              }
+              
+              #info-popup .header {
+                text-align: center;
+              }
+              
+              #info-popup .content {
+                padding: 20px 0;
+              }
+              
+              #info-popup input {
+                width: 100%;
+                border-radius: 5px;
+                padding: 10px;
+              }
+              
+              #info-popup button {
+                background-color: #000;
+                color: #cc1d1d;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                
+              }
+              
         </style>
     </head>
     <body style="background-color: black;">
         <div class="image-container">
             <img src="./resource.jpg" alt="Girl">
-          </div>
+        </div>
+        <button id="show-info">Hiển thị thông tin cá nhân</button>
+
+        <div id="info-popup" style="display: none;">
+        <h1>Thông tin cá nhân</h1>
+        <p>Tên: <input type="text" id="name" value="Văn Thành"></p>
+        <p>Email: <input type="email" id="email" value="thanhoc890@gmail.com"></p>
+        <p>Số điện thoại: <input type="tel" id="phone" value="0388543110"></p>
+        <button id="close-popup">Đóng</button>
+        </div>
+        <script>
+            const showInfoPopup = () => {
+                const infoPopup = document.getElementById("info-popup");
+                infoPopup.style.display = "block";
+              };
+              
+              const closeInfoPopup = () => {
+                const infoPopup = document.getElementById("info-popup");
+                infoPopup.style.display = "none";
+              };
+              
+              document.getElementById("show-info").addEventListener("click", showInfoPopup);
+              document.getElementById("close-popup").addEventListener("click", closeInfoPopup);
+              
+        </script>
     </body>
 </html>
