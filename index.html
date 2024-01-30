@@ -65,9 +65,10 @@
               }
               
               #info-popup input {
-                width: 100%;
+                width: 40%;
                 border-radius: 5px;
-                padding: 10px;
+                padding: 20px;
+                margin-left: 50px;
               }
               
               #info-popup button {
@@ -76,22 +77,23 @@
                 padding: 10px;
                 border-radius: 5px;
                 cursor: pointer;
-                
+                margin-left: 20px;
+                border-color: white;
               }
               
         </style>
     </head>
     <body style="background-color: black;">
         <div class="image-container">
-            <img src="./resource.jpg" alt="Girl">
+            <img src="./img3.jpg" alt="Girl">
             <button id="show-info">Hiển thị thông tin cá nhân</button>
         </div>
 
         <div id="info-popup" style="display: none;">
-        <h1 style="color: white;">Thông tin cá nhân</h1>
-        <p style="color: white;">Tên: <input type="text" id="name" value="Văn Thành"></p>
-        <p style="color: white;">Email: <input type="email" id="email" value="thanhoc890@gmail.com"></p>
-        <p style="color: white;">Số điện thoại: <input type="tel" id="phone" value="0388543110"></p>
+        <h1 style="color: white; padding-left: 20px;">Thông tin cá nhân</h1>
+        <p style="color: white; padding-left: 20px;">Tên: <input type="text" id="name" value="Văn Thành"></p>
+        <p style="color: white; padding-left: 20px;">Email: <input type="email" id="email" value="thanhoc890@gmail.com"></p>
+        <p style="color: white; padding-left: 20px;">Số điện thoại: <input type="tel" id="phone" value="0388543110"></p>
         <button id="close-popup">Đóng</button>
         </div>
         <script>
